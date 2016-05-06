@@ -1,4 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var WebpackNotifierPlugin = require('webpack-notifier')
+
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/app/index.html',
   filename: 'index.html',
@@ -29,5 +31,8 @@ module.exports = {
       {test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader"}
     ]
   },
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
+    new WebpackNotifierPlugin({title: 'Webpack'})
+  ]
 };

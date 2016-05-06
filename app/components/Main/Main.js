@@ -1,6 +1,7 @@
 import React from 'react'
+import './Main.scss'
 
-const Main = React.createClass({
+class Main extends React.Component {
   render () {
     return (
       <div className='main-container'>
@@ -8,6 +9,6 @@ const Main = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default Main
