@@ -1,0 +1,11 @@
+@import '../../style/variables.scss';
+
+.header-container {
+  background-color: $mainColor;
+  padding: 20px 30px;
+  h2 {
+    margin: 0px;
+    font-size: 25px;
+    color: $whiteColor;
+  }
+}

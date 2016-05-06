@@ -1,6 +1,21 @@
-@import "../../style/variables.scss";
+@import "../../style/reset";
+@import "../../style/bootstrap";
+@import "../../style/variables";
 
-h1{
+html {
+  background: url('../../../assets/pictures/pattern.svg') center center /cover no-repeat;
+
+    height: 100%;
+  * {
+    font-family: Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+  }
+  body {
+    background: none;
+  }
+}
+
+h1 {
   text-align: center;
   font-size: 30px;
   color: $titleColor;

@@ -2,8 +2,8 @@ import React from 'react'
 
 function Header() {
   return (
-    <div>
-      <h2>Header title</h2>
+    <div className="container">
+      <h2>Weather App</h2>
     </div>
   )
 }
