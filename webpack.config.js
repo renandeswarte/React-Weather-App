@@ -17,17 +17,16 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
       {
         test: /\.scss$/,
-        include: /src/,
         loaders: [
         'style',
         'css',
         'autoprefixer?browsers=last 3 versions',
         'sass?outputStyle=expanded'
         ]
-      }
+      },
+      {test: /\.jsx?$/, exclude: /node_modules/, loader: "babel-loader"}
     ]
   },
   plugins: [HTMLWebpackPluginConfig]
