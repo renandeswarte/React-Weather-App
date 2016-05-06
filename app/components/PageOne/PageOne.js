@@ -7,6 +7,7 @@ function PageOne() {
   return (
     <MainContainer>
       <h1>Page One</h1>
+      <img src='../assets/pictures/green-square.jpg'/>
       <Link to='/'>
         <button className="btn btn-lg">
           Link to Home
