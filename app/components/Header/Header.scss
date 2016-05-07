@@ -3,9 +3,14 @@
 .header-container {
   background-color: $mainColor;
   padding: 20px 30px;
-  h2 {
-    margin: 0px;
+  .logo, h2 {
     font-size: 25px;
-    color: $whiteColor;
+    color: $whiteColor
   }
+  h2 {
+    padding-left: 10px;
+    margin: 0px;
+    display: inline-block;
+  }
+
 }
