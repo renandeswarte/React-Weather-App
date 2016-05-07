@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
+import PromptContainer from '../Prompt/PromptContainer'
 import './Home.scss'
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
           Link to page 1
         </button>
       </Link>
+      <PromptContainer />
     </MainContainer>
   )
 }
