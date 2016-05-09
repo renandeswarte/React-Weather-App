@@ -1,0 +1,9 @@
+.city-form-container {
+  &.header-city-form {
+    form {
+      input{width:70%}
+      button{width:30%}
+      input, button {float: left}
+    }
+  }
+}

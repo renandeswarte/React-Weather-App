@@ -1,11 +1,17 @@
 import React from 'react'
 import FontAwesome from 'react-fontawesome'
+import PromptContainer from '../Prompt/PromptContainer'
 
-function Header() {
+function Header(props) {
   return (
     <div className="container">
-      <FontAwesome name='cloud' className='logo' />
-      <h2>Weather App</h2>
+      <div className="left-menu-container col-xs-12 col-sm-8">
+        <FontAwesome name='cloud' className='logo' />
+        <h2>Weather App</h2>
+      </div>
+      <div className="right-menu-container col-xs-12 col-sm-4">
+        <PromptContainer containerClass="header-city-form" />
+      </div>
     </div>
   )
 }

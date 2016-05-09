@@ -1,9 +1,10 @@
 import React from 'react'
 import Prompt from './Prompt'
+import './Prompt.scss'
 
-function PromptContainer() {
+function PromptContainer({containerClass = ''}) {
   return (
-    <div className="form-container">
+    <div className={`form-container city-form-container ${containerClass}`}>
       <Prompt />
     </div>
   )
