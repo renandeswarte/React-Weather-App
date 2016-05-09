@@ -5,7 +5,7 @@ import './PageOne.scss'
 
 function PageOne() {
   return (
-    <MainContainer>
+    <MainContainer pageName="PageOne">
       <h1>Page One</h1>
       <img src='../assets/pictures/green-square.jpg'/>
       <Link to='/'>

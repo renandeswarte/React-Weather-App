@@ -2,7 +2,10 @@
   &.header-city-form {
     form {
       input{width:70%}
-      button{width:30%}
+      button{
+        width:25%; 
+        margin-left: 5%;
+      }
       input, button {float: left}
     }
   }
