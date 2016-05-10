@@ -14,19 +14,31 @@ class Prompt extends React.Component {
 
     Object.keys(cityInput).map((key) => {
       if (cityInput[key].value) {
-        const geocoder = new google.maps.Geocoder();
+        // const geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode( { 'address': cityInput[key].value}, (results, status) => {
-          if (status == google.maps.GeocoderStatus.OK) {
-            this.context.router.push({
-              pathname: `/weather-city/${cityInput[key].value}`,
-              state: {
-                city: cityInput[key].value,
-                latitude: results[0].geometry.location.lat(),
-                longitude: results[0].geometry.location.lng()
-              }
-            })
+        // geocoder.geocode( { 'address': cityInput[key].value}, (results, status) => {
+        //   if (status == google.maps.GeocoderStatus.OK) {
+        //     this.context.router.push({
+        //       pathname: `/weather-city/${cityInput[key].value}`,
+        //       state: {
+        //         city: cityInput[key].value,
+        //         latitude: results[0].geometry.location.lat(),
+        //         longitude: results[0].geometry.location.lng()
+        //       }
+        //     })
+        //   }
+        // })
+
+        this.context.router.push({
+          pathname: `/weather-city/`,
+          query: {
+            city: cityInput[key].value
           }
+          // state: {
+          //   city: cityInput[key].value,
+          //   latitude: results[0].geometry.location.lat(),
+          //   longitude: results[0].geometry.location.lng()
+          // }
         })
       }
     })

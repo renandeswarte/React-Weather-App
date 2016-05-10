@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
 import { getCityCurrentWeather } from '../../helpers/apis/weather_api'
+import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
 
 class WeatherCityContainer extends React.Component {
   constructor () {
@@ -10,40 +11,62 @@ class WeatherCityContainer extends React.Component {
       cityName: '',
       weather: '',
       icon: '',
-      latitude: 0,
-      longitude: 0,
       cityPicture: ''
     }
   }
 
-  async componentDidMount() {
-    console.log(this.props.location.state);
-    try {
-      const weather = await getCityCurrentWeather(this.props.location.state.city)
-      console.log(weather.data);
-      this.setState({
-        cityName: weather.data.name,
-        weather: weather.data.weather[0].main,
-        icon: weather.data.weather[0].icon,
-        latitude: weather.data.weather[0].latitude,
-        longitude: weather.data.weather[0].longitude
+  async getPictures(latitude, longitude) {
+    const pictures = await getCityLastestPicture(latitude, longitude)
+    this.setState({
+        cityPicture: pictures.photos[0].photo_file_url
       })
-    } catch (error) {
-      console.warn('Error in ResultsContainer')
-    }
   }
 
-  async componentWillReceiveProps(newProps) {
-    console.log(newProps.location.state);
+  async componentDidMount() {
+    const { query } = this.props.location
+    let latitude
+    let longitude
     try {
-      const weather = await getCityCurrentWeather(newProps.location.state.city)
+      const weather = await getCityCurrentWeather(query.city)
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': query.city}, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat()
+            longitude  = results[0].geometry.location.lng()
+            this.getPictures(latitude, longitude)
+          }
+      })
       this.setState({
         cityName: weather.data.name,
         weather: weather.data.weather[0].main,
         icon: weather.data.weather[0].icon
       })
     } catch (error) {
-      console.warn('Error in ResultsContainer')
+      console.warn('Error in WeatherCityContainer')
+    }
+  }
+
+  async componentWillReceiveProps(newProps) {
+    const { query } = newProps.location
+    let latitude
+    let longitude
+    try {
+      const weather = await getCityCurrentWeather(query.city)
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode( { 'address': query.city}, (results, status) => {
+          if (status == google.maps.GeocoderStatus.OK) {
+            latitude = results[0].geometry.location.lat()
+            longitude  = results[0].geometry.location.lng()
+            this.getPictures(latitude, longitude)
+          }
+      })
+      this.setState({
+        cityName: weather.data.name,
+        weather: weather.data.weather[0].main,
+        icon: weather.data.weather[0].icon
+      })
+    } catch (error) {
+      console.warn('Error in WeatherCityContainer')
     }
   }
 
@@ -57,7 +80,8 @@ class WeatherCityContainer extends React.Component {
         </Link>
         <h1>{this.state.cityName}</h1>
         <p>{this.state.weather}</p>
-        <div>{!!this.state.icon && <img src={`../assets/weather-icons/${this.state.icon}.svg`}/>}</div>    
+        <div>{!!this.state.icon && <img src={`../assets/weather-icons/${this.state.icon}.svg`}/>}</div>  
+        <div>{!!this.state.cityPicture && <img src={this.state.cityPicture}/>}</div>   
       </MainContainer>
     )
   }
