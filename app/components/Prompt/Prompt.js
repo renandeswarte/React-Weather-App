@@ -21,16 +21,19 @@ class Prompt extends React.Component {
         })
       }
     })
+    document.getElementById("cityForm").reset()
   }
+  
   componentDidMount() {
     const input = document.getElementsByClassName('city-input')
     Object.keys(input).map(function(key) {
       new google.maps.places.Autocomplete(input[key], {types: ['(cities)']})
     })
   }
+
   render() {
     return (
-      <form onSubmit={(event) => this.onSubmit(event)}>
+      <form id="cityForm" onSubmit={(event) => this.onSubmit(event)}>
         <div class="form-group">
           <input
             type="text"

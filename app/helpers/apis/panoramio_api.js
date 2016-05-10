@@ -1,5 +1,4 @@
 import axios from 'axios'
-import jsonp from 'jsonp'
 
 const _baseURL = "http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=1"
 const options = "&size=medium&mapfilter=true"

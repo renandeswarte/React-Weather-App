@@ -4,6 +4,7 @@ import MainContainer from '../Main/MainContainer'
 import { getCityCurrentWeather } from '../../helpers/apis/weather_api'
 import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
 import defaultBg from '../../../assets/pictures/default-weather-bg.jpg'
+import FontAwesome from 'react-fontawesome'
 import './Weather.scss'
 
 class WeatherCityContainer extends React.Component {
@@ -28,6 +29,7 @@ class WeatherCityContainer extends React.Component {
         cityPicture: defaultBg
       })
     }
+     document.getElementById('city-background').classList.remove("transition")
   }
 
   async getPictureAndWeather(props) {
@@ -66,20 +68,21 @@ class WeatherCityContainer extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
+    document.getElementById('city-background').classList.add("transition")
     // Getting weather and picture info
     this.getPictureAndWeather(newProps.location)
   }
 
   render() {
-    var divStyle = {
+    const divStyle = {
       backgroundImage: 'url(' + this.state.cityPicture + ')'
     }
     return (
       <MainContainer pageName="weatherCityPage">
-        <div className="city-background" style={divStyle}></div>
+        <div id="city-background" className="city-background" style={divStyle}></div>
         <Link to='/'>
-          <button className="btn btn-lg">
-            Link to Home
+          <button className="home-link">
+             <FontAwesome name='chevron-left' />
           </button>
         </Link>
         <div className="weather-details">
