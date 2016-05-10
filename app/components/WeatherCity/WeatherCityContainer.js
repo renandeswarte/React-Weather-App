@@ -8,16 +8,25 @@ class WeatherCityContainer extends React.Component {
     super()
     this.state = {
       cityName: '',
-      weather: ''
+      weather: '',
+      icon: '',
+      latitude: 0,
+      longitude: 0,
+      cityPicture: ''
     }
   }
 
   async componentDidMount() {
+    console.log(this.props.location.state);
     try {
       const weather = await getCityCurrentWeather(this.props.location.state.city)
+      console.log(weather.data);
       this.setState({
         cityName: weather.data.name,
-        weather: weather.data.weather[0].main 
+        weather: weather.data.weather[0].main,
+        icon: weather.data.weather[0].icon,
+        latitude: weather.data.weather[0].latitude,
+        longitude: weather.data.weather[0].longitude
       })
     } catch (error) {
       console.warn('Error in ResultsContainer')
@@ -25,11 +34,13 @@ class WeatherCityContainer extends React.Component {
   }
 
   async componentWillReceiveProps(newProps) {
+    console.log(newProps.location.state);
     try {
       const weather = await getCityCurrentWeather(newProps.location.state.city)
       this.setState({
         cityName: weather.data.name,
-        weather: weather.data.weather[0].main 
+        weather: weather.data.weather[0].main,
+        icon: weather.data.weather[0].icon
       })
     } catch (error) {
       console.warn('Error in ResultsContainer')
@@ -39,14 +50,14 @@ class WeatherCityContainer extends React.Component {
   render() {
     return (
       <MainContainer pageName="weatherCityPage">
-        <h1>Page</h1>
-        {this.state.cityName}
-        {this.state.weather}
         <Link to='/'>
           <button className="btn btn-lg">
             Link to Home
           </button>
         </Link>
+        <h1>{this.state.cityName}</h1>
+        <p>{this.state.weather}</p>
+        <div>{!!this.state.icon && <img src={`../assets/weather-icons/${this.state.icon}.svg`}/>}</div>    
       </MainContainer>
     )
   }
