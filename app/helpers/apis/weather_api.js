@@ -29,6 +29,12 @@ function getCityWeather(city) {
   return axios.get(url);
 }
 
+function getForecast(city) {
+  var queryStringData = getQueryStringData(city);
+  var url = prepUrl('forecast/daily', queryStringData)
+  return axios.get(url)
+}
+
 export async function getCityCurrentWeather(city) {
   try {
     return await getCityWeather(city)
@@ -36,3 +42,12 @@ export async function getCityCurrentWeather(city) {
     console.warn('Error in getCurrentWeather: ,', error)
   }
 }
+
+export async function getForecastWeather(city) {
+  try {
+    return await getForecast(city)
+  } catch (error) {
+    console.warn('Error in getForecastWeather: ,', error)
+  }
+}
+

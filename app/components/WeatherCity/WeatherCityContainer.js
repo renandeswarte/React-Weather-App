@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
-import { getCityCurrentWeather } from '../../helpers/apis/weather_api'
+import { getCityCurrentWeather, getForecastWeather } from '../../helpers/apis/weather_api'
 import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
+import { getDate, convertToCelcius, convertToFarenheit } from '../../helpers/utils'
 import defaultBg from '../../../assets/pictures/default-weather-bg.jpg'
 import FontAwesome from 'react-fontawesome'
 import './Weather.scss'
@@ -12,7 +13,11 @@ class WeatherCityContainer extends React.Component {
     super()
     this.state = {
       cityName: '',
-      weather: '',
+      weatherMain: '',
+      weatherDescription: '',
+      temperatureCelcius: '',
+      temperatureFarenheit: '',
+      forecast: [],
       icon: '',
       cityPicture: ''
     }
@@ -37,7 +42,9 @@ class WeatherCityContainer extends React.Component {
     let latitude
     let longitude
     try {
-      const weather = await getCityCurrentWeather(query.city)
+      const weather = await getCityCurrentWeather(query.city);
+      const forecast = await getForecastWeather(query.city);
+
       const geocoder = new google.maps.Geocoder();
       geocoder.geocode( { 'address': query.city}, (results, status) => {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -48,7 +55,11 @@ class WeatherCityContainer extends React.Component {
       })
       this.setState({
         cityName: weather.data.name,
-        weather: weather.data.weather[0].main,
+        weatherMain: weather.data.weather[0].main,
+        weatherDescription: weather.data.weather[0].description,
+        forecast: forecast.data.list,
+        temperatureCelcius: convertToCelcius(weather.data.main.temp) + "°C",
+        temperatureFarenheit: convertToFarenheit(weather.data.main.temp) + "°F",
         icon: weather.data.weather[0].icon
       })
     } catch (error) {
@@ -85,10 +96,33 @@ class WeatherCityContainer extends React.Component {
              <FontAwesome name='chevron-left' />
           </button>
         </Link>
-        <div className="weather-details">
+        <div className="weather-details col-xs-12 col-sm-6 col-sm-offset-3">
           <h1>{this.state.cityName}</h1>
           <div>{!!this.state.icon && <img src={`../assets/weather-icons/${this.state.icon}.svg`}/>}</div>
-          <p className="weather-name">{this.state.weather}</p>
+          <p className="weather-description">{this.state.weatherDescription}</p>
+          <div className="weather-temperature">
+            <img src={`../assets/weather-icons/thermo.svg`}/>
+            <span>{this.state.temperatureCelcius} - {this.state.temperatureFarenheit}</span>
+          </div>
+          <div className="forecast-container">
+            <ul>
+              {this.state.forecast.map(function(element, i){
+                return (
+                  <li className='forecast-element' key={i}>
+                    <img src={`../assets/weather-icons/${element.weather[0].icon}.svg`}/>
+                    <div className='forecast-summary'>
+                      <p className='forecast-day'>{getDate(element.dt)}</p>
+                      <p className='forecast-description'>{element.weather[0].description}</p>
+                    </div>
+                    <div className="weather-temperature forecast-temperature">
+                      <img src={`../assets/weather-icons/thermo.svg`}/>
+                      <span>{`${convertToCelcius(element.temp.day)}°C - ${convertToFarenheit(element.temp.day)}°F`}</span>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div> 
       </MainContainer>
     )
