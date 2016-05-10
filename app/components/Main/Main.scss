@@ -10,6 +10,10 @@ html {
   }
   body {
     background: none;
+    height: 100%;
+    #app {
+      height: 100%
+    }
   }
 }
 
@@ -19,7 +23,10 @@ h1 {
   color: $whiteColor;
 }
 
-.page-container {
-  padding-top: 20px;
-  padding-bottom: 20px;
+.main-container {
+  height: 100%;
+  .page-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 }
