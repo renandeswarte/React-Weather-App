@@ -3,10 +3,10 @@ import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
 import { getCityCurrentWeather, getForecastWeather } from '../../helpers/apis/weather_api'
 import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
-import { convertToCelcius, convertToFarenheit } from '../../helpers/utils'
 import defaultBg from '../../../assets/pictures/default-weather-bg.jpg'
 import FontAwesome from 'react-fontawesome'
 import WeatherCity from './WeatherCity'
+import WeatherElements from './WeatherElements'
 import './Weather.scss'
 
 class WeatherCityContainer extends React.Component {
@@ -16,11 +16,11 @@ class WeatherCityContainer extends React.Component {
       cityName: '',
       weatherMain: '',
       weatherDescription: '',
-      temperatureCelcius: '',
-      temperatureFarenheit: '',
+      weatherTemp: 0,
       forecast: [],
       icon: '',
-      cityPicture: ''
+      cityPicture: defaultBg,
+      isLoading: true
     }
   }
 
@@ -59,9 +59,9 @@ class WeatherCityContainer extends React.Component {
         weatherMain: weather.data.weather[0].main,
         weatherDescription: weather.data.weather[0].description,
         forecast: forecast.data.list,
-        temperatureCelcius: convertToCelcius(weather.data.main.temp) + "°C",
-        temperatureFarenheit: convertToFarenheit(weather.data.main.temp) + "°F",
-        icon: weather.data.weather[0].icon
+        weatherTemp: weather.data.main.temp,
+        icon: weather.data.weather[0].icon,
+        isLoading: false
       })
     } catch (error) {
       console.warn('Error in WeatherCityContainer')
@@ -103,11 +103,11 @@ class WeatherCityContainer extends React.Component {
           cityName={this.state.cityName}
           weatherDescription={this.state.weatherDescription}
           icon={this.state.icon}
-          cityCelcius={this.state.temperatureCelcius}
-          cityFarenheit={this.state.temperatureFarenheit}
+          weatherTemp={this.state.weatherTemp}
           forecast={this.state.forecast}
+          isLoading={this.state.isLoading}
         />
-
+        
       </MainContainer>
     )
   }
