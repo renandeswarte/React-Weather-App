@@ -41,13 +41,13 @@
       100% { opacity: 1}
     }
     &.transition {
-      animation-duration: 2s;
+      animation-duration: 1s;
       animation-name: fadeOutEffect;
       @keyframes fadeOutEffect {
         0% { opacity: 1}
         100% { 
           opacity: 0; 
-          display:none;
+          // display:none;
         }
       }
     }
@@ -92,23 +92,26 @@
           }
           .forecast-summary {
             min-width: 150px;
-           position: relative;
-           top: -5px;
-           padding: 0px 20px;
-           .forecast-day{
-            font-size: 20px;
-            font-weight: bold;
+            position: relative;
+            top: -5px;
+            padding: 0px 20px;
+            .forecast-day{
+              font-size: 20px;
+              font-weight: bold;
+            }
+            .forecast-description{
+              text-transform: capitalize;
+              margin-top: 5px;
+            }
           }
-          .forecast-description{
-            text-transform: capitalize;
-            margin-top: 5px;
+          .forecast-temperature {
+            margin-top: 0px;
+            span {
+              min-width: 120px;
+            }
           }
         }
-              .forecast-temperature {
-            margin-top: 0px;
-          }
       }
     }
   }
-}
 }

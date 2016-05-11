@@ -3,9 +3,10 @@ import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
 import { getCityCurrentWeather, getForecastWeather } from '../../helpers/apis/weather_api'
 import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
-import { getDate, convertToCelcius, convertToFarenheit } from '../../helpers/utils'
+import { convertToCelcius, convertToFarenheit } from '../../helpers/utils'
 import defaultBg from '../../../assets/pictures/default-weather-bg.jpg'
 import FontAwesome from 'react-fontawesome'
+import WeatherCity from './WeatherCity'
 import './Weather.scss'
 
 class WeatherCityContainer extends React.Component {
@@ -96,34 +97,17 @@ class WeatherCityContainer extends React.Component {
              <FontAwesome name='chevron-left' />
           </button>
         </Link>
-        <div className="weather-details col-xs-12 col-sm-6 col-sm-offset-3">
-          <h1>{this.state.cityName}</h1>
-          <div>{!!this.state.icon && <img src={`../assets/weather-icons/${this.state.icon}.svg`}/>}</div>
-          <p className="weather-description">{this.state.weatherDescription}</p>
-          <div className="weather-temperature">
-            <img src={`../assets/weather-icons/thermo.svg`}/>
-            <span>{this.state.temperatureCelcius} - {this.state.temperatureFarenheit}</span>
-          </div>
-          <div className="forecast-container">
-            <ul>
-              {this.state.forecast.map(function(element, i){
-                return (
-                  <li className='forecast-element' key={i}>
-                    <img src={`../assets/weather-icons/${element.weather[0].icon}.svg`}/>
-                    <div className='forecast-summary'>
-                      <p className='forecast-day'>{getDate(element.dt)}</p>
-                      <p className='forecast-description'>{element.weather[0].description}</p>
-                    </div>
-                    <div className="weather-temperature forecast-temperature">
-                      <img src={`../assets/weather-icons/thermo.svg`}/>
-                      <span>{`${convertToCelcius(element.temp.day)}°C - ${convertToFarenheit(element.temp.day)}°F`}</span>
-                    </div>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        </div> 
+
+        <WeatherCity 
+          displayClass="col-xs-12 col-sm-6 col-sm-offset-3"
+          cityName={this.state.cityName}
+          weatherDescription={this.state.weatherDescription}
+          icon={this.state.icon}
+          cityCelcius={this.state.temperatureCelcius}
+          cityFarenheit={this.state.temperatureFarenheit}
+          forecast={this.state.forecast}
+        />
+
       </MainContainer>
     )
   }
