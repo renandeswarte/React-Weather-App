@@ -38,7 +38,7 @@ class Prompt extends React.Component {
           <input
             type="text"
             className="form-control city-input"
-            placeholder={"Enter a city name"} required
+            placeholder="Enter a city name" required
           />
           <button type="submit" className="btn btn-success">
             <FontAwesome name='search' />

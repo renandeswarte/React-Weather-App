@@ -1,6 +1,15 @@
 import React from 'react'
 import { getDate, convertToCelcius, convertToFarenheit } from '../../helpers/utils'
 
+export function CityBackgroundPicture({cityPicture}) {
+  return (
+    <div 
+      id="city-background" 
+      className="city-background" 
+      style={{backgroundImage: `url(${cityPicture})`}}>
+    </div>
+  )
+}
 
 export function WeatherIcon({icon}) {
   return (
@@ -23,19 +32,19 @@ export function WeatherCityDescription({description}) {
 export function WeatherForecastList({forecastList}) {
   return (
     <div className="forecast-container">
-        <ul>
-          {forecastList.map(function(element, i){
-            return (
-              <li className='forecast-element' key={i}>
-                <WeatherIcon icon={element.weather[0].icon}/>
-                <WeatherSummary date={element.dt} description={element.weather[0].description} />
-                <WeatherTemperature temperature={element.temp.day}/>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-  )}
+      <ul>
+        {forecastList.map(function(element, i){
+          return (
+            <li className='forecast-element' key={i}>
+              <WeatherIcon icon={element.weather[0].icon}/>
+              <WeatherSummary date={element.dt} description={element.weather[0].description} />
+              <WeatherTemperature temperature={element.temp.day}/>
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+)}
 
 export function WeatherSummary({date, description}) {
   return (

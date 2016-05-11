@@ -1,0 +1,15 @@
+@import "../../style/variables";
+
+.loading-container {
+  text-align: center;
+  span {
+    color: $mainColor;
+    font-size: 50px;
+  }
+}
+
+.page-container {
+  .loading-container {
+    margin-top: 100px;
+  }
+}

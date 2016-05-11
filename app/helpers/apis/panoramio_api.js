@@ -25,6 +25,6 @@ export async function getCityLastestPicture(lat, long) {
   try {
     return await getCityPicture(lat, long)
   } catch (error) {
-    console.warn('Error in getCityLastestPicture: ,', error)
+    console.warn('Error in getCityLastestPicture: ', error)
   }
 }

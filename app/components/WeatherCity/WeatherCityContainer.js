@@ -6,7 +6,7 @@ import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
 import defaultBg from '../../../assets/pictures/default-weather-bg.jpg'
 import FontAwesome from 'react-fontawesome'
 import WeatherCity from './WeatherCity'
-import WeatherElements from './WeatherElements'
+import { CityBackgroundPicture } from './WeatherElements'
 import './Weather.scss'
 
 class WeatherCityContainer extends React.Component {
@@ -26,16 +26,14 @@ class WeatherCityContainer extends React.Component {
 
   async getPictures(latitude, longitude) {
     const pictures = await getCityLastestPicture(latitude, longitude)
-    if (pictures.photos.length !== 0) {
-      this.setState({
-        cityPicture: pictures.photos[0].photo_file_url
-      })
-    } else {
-      this.setState({
-        cityPicture: defaultBg
-      })
-    }
-     document.getElementById('city-background').classList.remove("transition")
+
+    this.setState({
+      cityPicture: pictures.photos.length !== 0 
+      ? pictures.photos[0].photo_file_url
+      : defaultBg
+    })
+
+     document.getElementById('city-background').classList.remove('transition')
   }
 
   async getPictureAndWeather(props) {
@@ -80,24 +78,20 @@ class WeatherCityContainer extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    document.getElementById('city-background').classList.add("transition")
+    document.getElementById('city-background').classList.add('transition')
     // Getting weather and picture info
     this.getPictureAndWeather(newProps.location)
   }
 
   render() {
-    const divStyle = {
-      backgroundImage: 'url(' + this.state.cityPicture + ')'
-    }
     return (
       <MainContainer pageName="weatherCityPage">
-        <div id="city-background" className="city-background" style={divStyle}></div>
+        <CityBackgroundPicture cityPicture={this.state.cityPicture} />
         <Link to='/'>
           <button className="home-link">
              <FontAwesome name='chevron-left' />
           </button>
         </Link>
-
         <WeatherCity 
           displayClass="col-xs-12 col-sm-6 col-sm-offset-3"
           cityName={this.state.cityName}
@@ -107,7 +101,6 @@ class WeatherCityContainer extends React.Component {
           forecast={this.state.forecast}
           isLoading={this.state.isLoading}
         />
-        
       </MainContainer>
     )
   }
