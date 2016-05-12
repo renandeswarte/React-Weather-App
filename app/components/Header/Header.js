@@ -1,6 +1,6 @@
 import React from 'react'
 import FontAwesome from 'react-fontawesome'
-import PromptContainer from '../Prompt/PromptContainer'
+import CitySeachContainer from '../CitySeach/CitySeachContainer'
 import { Link } from 'react-router'
 
 function Header(props) {
@@ -13,7 +13,7 @@ function Header(props) {
         </Link>
       </div>
       <div className="right-menu-container col-xs-12 col-sm-4">
-        <PromptContainer containerClass="header-city-form" />
+        <CitySeachContainer containerClass="header-city-form" />
       </div>
     </div>
   )

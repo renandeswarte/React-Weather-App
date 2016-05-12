@@ -1,7 +1,7 @@
 import React from 'react'
 import FontAwesome from 'react-fontawesome'
 
-class Prompt extends React.Component {
+class CitySeach extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -10,25 +10,19 @@ class Prompt extends React.Component {
   }
   async onSubmit(event) {
     event.preventDefault()
-    const cityInput = document.getElementsByClassName('city-input')
-    Object.keys(cityInput).map((key) => {
-      if (cityInput[key].value) {
-        this.context.router.push({
-          pathname: `/weather-city/`,
-          query: {
-            city: cityInput[key].value
-          }
-        })
+    const cityInput = document.getElementById('citySearch')
+    this.context.router.push({
+      pathname: `/weather-city/`,
+      query: {
+        city: cityInput.value
       }
     })
     document.getElementById("cityForm").reset()
   }
   
   componentDidMount() {
-    const input = document.getElementsByClassName('city-input')
-    Object.keys(input).map(function(key) {
-      new google.maps.places.Autocomplete(input[key], {types: ['(cities)']})
-    })
+    const input = document.getElementById('citySearch')
+    new google.maps.places.Autocomplete(input, {types: ['(cities)']})
   }
 
   render() {
@@ -36,6 +30,7 @@ class Prompt extends React.Component {
       <form id="cityForm" onSubmit={(event) => this.onSubmit(event)}>
         <div class="form-group">
           <input
+            id="citySearch"
             type="text"
             className="form-control city-input"
             placeholder="Enter a city name" required
@@ -49,8 +44,8 @@ class Prompt extends React.Component {
   }
 }
 
-Prompt.contextTypes = {
+CitySeach.contextTypes = {
   router: React.PropTypes.object.isRequired
 }
 
-export default Prompt
+export default CitySeach
