@@ -8,7 +8,7 @@ class CitySeach extends React.Component {
       city: ''
     }
   }
-  async onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault()
     const cityInput = document.getElementById('citySearch')
     this.context.router.push({

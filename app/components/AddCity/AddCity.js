@@ -2,17 +2,11 @@ import React from 'react'
 import FontAwesome from 'react-fontawesome'
 
 class AddCity extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      city: ''
-    }
-  }
-  async onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault()
     const cityInput = document.getElementById('cityAdd')
-    console.log(cityInput.value);
-    document.getElementById("cityForm").reset()
+    this.props.addCityUpdate(cityInput.value)
+    document.getElementById("addCityForm").reset()
   }
   
   componentDidMount() {
@@ -22,7 +16,7 @@ class AddCity extends React.Component {
 
   render() {
     return (
-      <form id="cityForm" onSubmit={(event) => this.onSubmit(event)}>
+      <form id="addCityForm" onSubmit={(event) => this.onSubmit(event)}>
         <div class="form-group">
           <input
             id="cityAdd"

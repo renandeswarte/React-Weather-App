@@ -2,10 +2,10 @@ import React from 'react'
 import AddCity from './AddCity'
 import './AddCity.scss'
 
-function AddCityContainer({containerClass = ''}) {
+function AddCityContainer({addCityUpdate, containerClass = ''}) {
   return (
     <div className={`form-container city-form-container ${containerClass}`}>
-      <AddCity />
+      <AddCity addCityUpdate={addCityUpdate}/>
     </div>
   )
 }
