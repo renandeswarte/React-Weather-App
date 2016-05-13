@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
 import CitySeachContainer from '../CitySeach/CitySeachContainer'
 import AddCityContainer from '../AddCity/AddCityContainer'
