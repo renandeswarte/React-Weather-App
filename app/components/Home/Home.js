@@ -13,7 +13,7 @@ class Home extends React.Component {
    constructor () {
     super()
     this.state = {
-      citiesList: ["San Francisco, Californie, États-Unis", "Paris, France"],
+      citiesList: ["San Francisco, Californie, États-Unis"],
       citiesWeather: []
     }
   }
@@ -23,6 +23,8 @@ class Home extends React.Component {
     })
 
     this.getCityWeather(city)
+    const cityForm = document.getElementById('city-weather-element')
+    cityForm.classList.remove('form-displayed')
   }
 
   async getCityWeather(city) {
@@ -46,26 +48,30 @@ class Home extends React.Component {
       this.getCityWeather(element)
     })
   }
+  showAddCityForm() {
+    const cityForm = document.getElementById('city-weather-element')
+    cityForm.classList.add('form-displayed')
+  }
 
   render() {
     return (
       <MainContainer pageName="home">
         <h1>My Cities</h1>
        
-        <div id="test-container" className="test-container row">
+        <div id="cities-container" className="row">
           <ul>
-          {this.state.citiesWeather.map(function(element, i){
-            return (
-              <CityWeather cityData={element} key={i}/>
-            )
-          })}
+            {this.state.citiesWeather.map(function(element, i){
+              return (
+                <CityWeather cityData={element} key={i}/>
+              )
+            })}
+            <li id="city-weather-element" className="city-weather col-xs-12 col-sm-4 add-city-block">
+              <div className="inner-container">
+                <FontAwesome name="plus-square-o" className="add-city" onClick={this.showAddCityForm}/>
+                <AddCityContainer containerClass="add-city-form" addCityUpdate={(city) => this.updateCities(city)}/>
+              </div>
+            </li>
           </ul>
-          <div className="test col-xs-12 col-sm-4">
-            <div className="inner-container">
-              <FontAwesome name="plus-square-o" className="add-city"/>
-              <AddCityContainer containerClass="add-city-form" addCityUpdate={(city) => this.updateCities(city)}/>
-            </div>
-          </div>
         </div>
       </MainContainer>
     )

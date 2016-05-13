@@ -1,13 +1,61 @@
-.test-container{
-  .test {
-    padding: 20px;
-    .inner-container {
-      border-radius: 5px;
-      background-color: rgba(0,0,0,0.5);
-      min-height: 100px;
-      .add-city {
-        color: #FFF;
-        font-size: 60px;
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.home {
+  #cities-container{
+    .city-weather {
+      padding: 20px;
+      .inner-container {
+        height: 390px;
+        border-radius: 5px;
+        background-color: rgba(0,0,0,0.5);
+        padding: 20px;
+        h1, .weather-description {
+          @include flexCenter();
+          word-break: break-word;
+        }
+        h1 {
+          height: 85px;
+        }
+        .weather-description {
+          height: 40px;
+        }
+        .weather-temperature {
+          img {
+            margin-left: -15px;
+            margin-right: 0px;
+          }
+        }
+      }
+      &.add-city-block {
+        .inner-container {
+          @include flexCenter();
+          .add-city {
+            display: block;
+            color: $whiteColor;
+            font-size: 100px;
+            @include faceEffect(0.5s, 0, 1)
+          }
+          .add-city-form {
+            display: none;
+            button {
+              width: 100%;
+              margin-top: 10px;
+            }
+          }
+        }
+        &.form-displayed {
+          .inner-container {
+            .add-city {
+              animation-duration: 0.5s;
+              display: none;
+            }
+            .add-city-form {
+              display: block;
+              @include faceEffect(0.5s, 0, 1)
+            }
+          }
+        }
       }
     }
   }

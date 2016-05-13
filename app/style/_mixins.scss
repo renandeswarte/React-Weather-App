@@ -1,0 +1,17 @@
+@mixin flexCenter() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+@mixin faceEffect($time, $opacityStart, $opacityEnd) {
+  animation-duration: $time;
+  animation-name: fadeEffect;
+  @keyframes fadeEffect {
+    0% { opacity: $opacityStart}
+    100% { 
+      opacity: $opacityEnd; 
+    }
+  }
+}
