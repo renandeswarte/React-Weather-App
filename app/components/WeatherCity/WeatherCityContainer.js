@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import MainContainer from '../Main/MainContainer'
 import { getCityCurrentWeather, getForecastWeather } from '../../helpers/apis/weather_api'
 import { getCityLastestPicture } from '../../helpers/apis/panoramio_api'
+import { fullHeightContainer } from '../../helpers/utils'
 import defaultBg from '../../../assets/pictures/app-background.jpg'
 import FontAwesome from 'react-fontawesome'
 import WeatherCity from './WeatherCity'
@@ -68,10 +69,7 @@ class WeatherCityContainer extends React.Component {
 
   componentDidMount() {
     // Setting component style height
-    const header = document.getElementsByClassName('header-container')
-    const headerHeight = header[0].clientHeight;
-    const page = document.getElementsByClassName('weatherCityPage')
-    page[0].style.minHeight = window.innerHeight - headerHeight + 'px'
+    fullHeightContainer('weatherCityPage')
 
     // Getting weather and picture info
     this.getPictureAndWeather(this.props.location)

@@ -3,16 +3,13 @@
 
 html {
   background: url('../../../assets/pictures/app-background.jpg') center center /cover no-repeat;
-  height: 100%;
   * {
     font-family: Helvetica, Arial, sans-serif;
     box-sizing: border-box;
   }
   body {
     background: none;
-    height: 100%;
     #app {
-      height: 100%
     }
   }
 }

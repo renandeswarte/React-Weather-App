@@ -1,14 +1,14 @@
 .test-container{
   .test {
     padding: 20px;
-    .innerContainer {
-          border-radius: 5px;
+    .inner-container {
+      border-radius: 5px;
       background-color: rgba(0,0,0,0.5);
-    min-height: 100px;
-    .add-city {
-      color: #FFF;
-      font-size: 60px;
-    }
+      min-height: 100px;
+      .add-city {
+        color: #FFF;
+        font-size: 60px;
+      }
     }
   }
 }

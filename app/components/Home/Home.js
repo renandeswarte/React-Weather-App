@@ -4,6 +4,7 @@ import MainContainer from '../Main/MainContainer'
 import CitySeachContainer from '../CitySeach/CitySeachContainer'
 import AddCityContainer from '../AddCity/AddCityContainer'
 import FontAwesome from 'react-fontawesome'
+import { fullHeightContainer } from '../../helpers/utils'
 import CityWeather from './CityWeather'
 import { getCityCurrentWeather } from '../../helpers/apis/weather_api'
 import './Home.scss'
@@ -38,6 +39,9 @@ class Home extends React.Component {
     })
   }
   componentDidMount() {
+    // Setting component style height
+    fullHeightContainer('home')
+
     this.state.citiesList.map((element, i) => {
       this.getCityWeather(element)
     })
@@ -45,18 +49,19 @@ class Home extends React.Component {
 
   render() {
     return (
-      <MainContainer pageName="Home">
+      <MainContainer pageName="home">
         <h1>My Cities</h1>
        
         <div id="test-container" className="test-container row">
+          <ul>
           {this.state.citiesWeather.map(function(element, i){
             return (
               <CityWeather cityData={element} key={i}/>
             )
           })}
-
+          </ul>
           <div className="test col-xs-12 col-sm-4">
-            <div className="innerContainer">
+            <div className="inner-container">
               <FontAwesome name="plus-square-o" className="add-city"/>
               <AddCityContainer containerClass="add-city-form" addCityUpdate={(city) => this.updateCities(city)}/>
             </div>

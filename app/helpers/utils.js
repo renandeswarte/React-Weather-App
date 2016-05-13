@@ -20,3 +20,10 @@ export function convertToCelcius(kelvin) {
 export function convertToFarenheit(kelvin) {
   return Math.round(kelvin * (9/5) - 459.67, 0)
 }
+
+export function fullHeightContainer(pageName) {
+  const header = document.getElementsByClassName('header-container')
+  const headerHeight = header[0].clientHeight;
+  const page = document.getElementsByClassName(pageName)
+  page[0].style.minHeight = window.innerHeight - headerHeight + 'px'
+}

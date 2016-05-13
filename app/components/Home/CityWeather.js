@@ -5,7 +5,7 @@ import { WeatherIcon, WeatherCityName, WeatherCityDescription, WeatherForecastLi
 function CityWeather({cityData}) {
   return (
    <li className="test col-xs-12 col-sm-4">
-    <div className="innerContainer">
+    <div className="inner-container weather-details">
         <WeatherCityName name={cityData.cityName} />
         <WeatherIcon icon={cityData.icon}/>
         <WeatherCityDescription description={cityData.weatherDescription} />
