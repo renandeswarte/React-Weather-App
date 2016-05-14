@@ -15,3 +15,17 @@
     }
   }
 }
+
+@mixin faceEffectRemove($time, $opacityStart, $opacityEnd) {
+  animation-duration: $time;
+  animation-name: fadeEffectRemove;
+  animation-fill-mode:forwards;
+  @keyframes fadeEffectRemove {
+    0% { 
+      opacity: $opacityStart;
+    }
+    100% { 
+      opacity: $opacityEnd;
+    }
+  }
+}

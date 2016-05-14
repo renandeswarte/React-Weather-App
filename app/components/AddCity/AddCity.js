@@ -3,6 +3,7 @@ import FontAwesome from 'react-fontawesome'
 
 class AddCity extends React.Component {
   onSubmit(event) {
+    console.log(this)
     event.preventDefault()
     const cityInput = document.getElementById('cityAdd')
     this.props.addCityUpdate(cityInput.value)
