@@ -5,7 +5,7 @@
   #cities-container{
     .city-weather {
       position: relative;
-      @include faceEffect(1s, 0, 1)
+      @include fadeInEffect(1s)
       padding: 20px;
       .remove-city {
         position: absolute;
@@ -48,7 +48,12 @@
             display: block;
             color: $whiteColor;
             font-size: 100px;
-            @include faceEffect(0.5s, 0, 1)
+            @include fadeInEffect(0.5s);
+            transition: all 0.5s ease;
+            &:hover {
+              transform: scale(1.2);
+
+            }
           }
           .add-city-form {
             display: none;
@@ -65,13 +70,13 @@
             }
             .add-city-form {
               display: block;
-              @include faceEffect(0.5s, 0, 1)
+              @include fadeInEffect(0.5s)
             }
           }
         }
       }
       &.removed {
-        @include faceEffectRemove(0.5s, 1, 0);
+        @include fadeOutEffect(0.5s);
       }
     }
   }

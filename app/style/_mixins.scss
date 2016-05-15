@@ -5,27 +5,21 @@
   text-align: center;
 }
 
-@mixin faceEffect($time, $opacityStart, $opacityEnd) {
+@mixin fadeInEffect($time) {
   animation-duration: $time;
   animation-name: fadeEffect;
   @keyframes fadeEffect {
-    0% { opacity: $opacityStart}
-    100% { 
-      opacity: $opacityEnd; 
-    }
+    0% { opacity: 0 }
+    100% { opacity: 1 }
   }
 }
 
-@mixin faceEffectRemove($time, $opacityStart, $opacityEnd) {
+@mixin fadeOutEffect($time) {
   animation-duration: $time;
-  animation-name: fadeEffectRemove;
+  animation-name: fadeOutEffect;
   animation-fill-mode:forwards;
-  @keyframes fadeEffectRemove {
-    0% { 
-      opacity: $opacityStart;
-    }
-    100% { 
-      opacity: $opacityEnd;
-    }
+  @keyframes fadeOutEffect {
+    0% { opacity: 1 }
+    100% { opacity: 0 }
   }
 }

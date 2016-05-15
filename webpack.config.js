@@ -1,5 +1,6 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var WebpackNotifierPlugin = require('webpack-notifier')
+var webpack = require ('webpack')
 
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/app/index.html',
@@ -40,6 +41,16 @@ module.exports = {
   },
   plugins: [
     HTMLWebpackPluginConfig,
-    new WebpackNotifierPlugin({title: 'Webpack'})
+    new WebpackNotifierPlugin({title: 'Webpack'}),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress:{
+        warnings: false
+      }
+    })
   ]
 };

@@ -36,8 +36,10 @@ export function WeatherForecastList({forecastList}) {
         {forecastList.map(function(element, i){
           return (
             <li className='forecast-element' key={i}>
-              <WeatherIcon icon={element.weather[0].icon}/>
-              <WeatherSummary date={element.dt} description={element.weather[0].description} />
+              <div className="weather-info">
+                <WeatherIcon icon={element.weather[0].icon}/>
+                <WeatherSummary date={element.dt} description={element.weather[0].description} />
+              </div>
               <WeatherTemperature temperature={element.temp.day}/>
             </li>
           )

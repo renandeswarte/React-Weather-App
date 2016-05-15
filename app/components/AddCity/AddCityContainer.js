@@ -1,6 +1,5 @@
 import React from 'react'
 import AddCity from './AddCity'
-import './AddCity.scss'
 
 function AddCityContainer({addCityUpdate, containerClass = ''}) {
   return (

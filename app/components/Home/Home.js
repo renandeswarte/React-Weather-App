@@ -82,6 +82,7 @@ class Home extends React.Component {
                 <CityWeather cityData={element} key={i} removeCity={(city) => this.removeCity(city)}/>
               )
             }.bind(this))}
+
             <li id="city-weather-element" className="city-weather col-xs-12 col-sm-4 add-city-block">
               <div className="inner-container">
                 <FontAwesome name="plus-square-o" className="add-city" onClick={this.showAddCityForm}/>

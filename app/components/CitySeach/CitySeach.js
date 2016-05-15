@@ -2,12 +2,6 @@ import React from 'react'
 import FontAwesome from 'react-fontawesome'
 
 class CitySeach extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      city: ''
-    }
-  }
   onSubmit(event) {
     event.preventDefault()
     const cityInput = document.getElementById('citySearch')
