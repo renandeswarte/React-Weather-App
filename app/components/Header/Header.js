@@ -3,7 +3,7 @@ import FontAwesome from 'react-fontawesome'
 import CitySeachContainer from '../CitySeach/CitySeachContainer'
 import { Link } from 'react-router'
 
-function Header(props) {
+function Header() {
   return (
     <div className="container">
       <div className="left-menu-container col-xs-12 col-sm-8">

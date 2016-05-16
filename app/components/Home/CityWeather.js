@@ -3,8 +3,6 @@ import { WeatherIcon, WeatherCityName, WeatherCityDescription, WeatherForecastLi
 import { Link } from 'react-router'
 import FontAwesome from 'react-fontawesome'
 
-
-
 class CityWeather extends React.Component {
   removeCity(event, city) {
     // Remove city element from the DOM
@@ -37,4 +35,5 @@ class CityWeather extends React.Component {
     )
   }
 }
+
 export default CityWeather
